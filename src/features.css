@@ -1,0 +1,69 @@
+/* Styles for things features.js adds. They fall back to Canvas's own colours
+   when no theme is active. */
+
+.ic-DashboardCard__header { position: relative; }
+
+.sc-grade {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-decoration: none !important;
+  color: #fff !important;
+  background: rgb(0 0 0 / 0.55);
+  backdrop-filter: blur(4px);
+}
+.sc-grade:hover { background: rgb(0 0 0 / 0.75); }
+
+.sc-due {
+  margin: 0 0 24px;
+  padding: 12px 14px;
+  border: 1px solid var(--sc-border, #c7cdd1);
+  border-radius: 10px;
+  background: var(--sc-surface, #f5f5f5);
+}
+
+.sc-due__title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--sc-text, #273540);
+}
+
+.sc-due__empty {
+  margin: 0;
+  font-size: 13px;
+  color: var(--sc-text-dim, #556572);
+}
+
+.sc-due__item {
+  display: block;
+  padding: 7px 0;
+  border-top: 1px solid var(--sc-border, #e8eaec);
+  text-decoration: none !important;
+}
+
+.sc-due__name {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  color: var(--sc-link, var(--ic-link-color, #0e68b3));
+}
+.sc-due__item:hover .sc-due__name { text-decoration: underline; }
+
+.sc-due__meta {
+  display: block;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--sc-text-dim, #556572);
+}
+
+.sc-due__item--missing .sc-due__meta { color: #e5484d; }

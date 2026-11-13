@@ -1,0 +1,135 @@
+/* Hand-written layer of the theme. Injected at document_start, so the big
+   surfaces are themed before Canvas paints. darken.js then fills in the rest
+   by rewriting Canvas's own stylesheets against the same variables.
+
+   theme.js sets on <html>: --sc-bg --sc-surface --sc-text --sc-accent
+   --sc-link --sc-nav --sc-on-accent --sc-nav-text                        */
+
+html.sc-on {
+  --sc-surface-2: color-mix(in srgb, var(--sc-surface) 88%, var(--sc-text));
+  --sc-border: color-mix(in srgb, var(--sc-surface) 80%, var(--sc-text));
+  --sc-text-dim: color-mix(in srgb, var(--sc-text) 68%, var(--sc-bg));
+  --sc-accent-dark: color-mix(in srgb, var(--sc-accent) 85%, black);
+
+  /* Canvas's own brand variables. A lot of its CSS runs on these. */
+  --ic-brand-primary: var(--sc-accent);
+  --ic-brand-primary-darkened-5: color-mix(in srgb, var(--sc-accent) 95%, black);
+  --ic-brand-primary-darkened-10: color-mix(in srgb, var(--sc-accent) 90%, black);
+  --ic-brand-primary-darkened-15: var(--sc-accent-dark);
+  --ic-brand-primary-lightened-5: color-mix(in srgb, var(--sc-accent) 95%, white);
+  --ic-brand-primary-lightened-10: color-mix(in srgb, var(--sc-accent) 90%, white);
+  --ic-brand-primary-lightened-15: color-mix(in srgb, var(--sc-accent) 85%, white);
+
+  --ic-brand-button--primary-bgd: var(--sc-accent);
+  --ic-brand-button--primary-bgd-darkened-5: color-mix(in srgb, var(--sc-accent) 95%, black);
+  --ic-brand-button--primary-bgd-darkened-15: var(--sc-accent-dark);
+  --ic-brand-button--primary-text: var(--sc-on-accent);
+  --ic-brand-button--secondary-bgd: var(--sc-surface-2);
+  --ic-brand-button--secondary-bgd-darkened-5: color-mix(in srgb, var(--sc-surface-2) 92%, var(--sc-text));
+  --ic-brand-button--secondary-bgd-darkened-15: color-mix(in srgb, var(--sc-surface-2) 82%, var(--sc-text));
+  --ic-brand-button--secondary-text: var(--sc-text);
+
+  --ic-brand-font-color-dark: var(--sc-text);
+  --ic-brand-font-color-dark-lightened-15: color-mix(in srgb, var(--sc-text) 85%, var(--sc-bg));
+  --ic-brand-font-color-dark-lightened-28: var(--sc-text-dim);
+
+  --ic-link-color: var(--sc-link);
+  --ic-link-color-darkened-10: color-mix(in srgb, var(--sc-link) 85%, var(--sc-text));
+  --ic-link-color-lightened-10: color-mix(in srgb, var(--sc-link) 85%, var(--sc-bg));
+
+  --ic-brand-global-nav-bgd: var(--sc-nav);
+  --ic-brand-global-nav-logo-bgd: var(--sc-nav);
+  --ic-brand-global-nav-ic-icon-svg-fill: var(--sc-nav-text);
+  --ic-brand-global-nav-ic-icon-svg-fill--active: var(--sc-accent);
+  --ic-brand-global-nav-menu-item__text-color: var(--sc-nav-text);
+  --ic-brand-global-nav-menu-item__text-color--active: var(--sc-link);
+  --ic-brand-global-nav-avatar-border: var(--sc-nav-text);
+  --ic-brand-global-nav-menu-item__badge-bgd: var(--sc-accent);
+  --ic-brand-global-nav-menu-item__badge-text: var(--sc-on-accent);
+
+  color-scheme: light;
+  background-color: var(--sc-bg) !important;
+}
+
+html.sc-on.sc-dark { color-scheme: dark; }
+
+/* ---- page shell ------------------------------------------------------- */
+
+html.sc-on body,
+html.sc-on #application,
+html.sc-on .ic-Layout-wrapper,
+html.sc-on .ic-Layout-columns,
+html.sc-on .ic-Layout-contentMain,
+html.sc-on #left-side,
+html.sc-on #right-side-wrapper {
+  background-color: var(--sc-bg);
+  color: var(--sc-text);
+}
+
+html.sc-on .ic-app-header { background-color: var(--sc-nav); }
+
+html.sc-on ::selection {
+  background: color-mix(in srgb, var(--sc-accent) 45%, transparent);
+}
+
+html.sc-on :is(input[type="text"], input[type="search"], input[type="email"], input[type="password"],
+    input[type="number"], input[type="url"], input:not([type]), textarea, select) {
+  background-color: var(--sc-surface);
+  color: var(--sc-text);
+}
+
+html.sc-on ::placeholder { color: var(--sc-text-dim); }
+
+/* ---- dashboard cards -------------------------------------------------- */
+
+html.sc-on .ic-DashboardCard {
+  background-color: var(--sc-surface);
+  border-color: var(--sc-border);
+}
+
+html.sc-on .ic-DashboardCard__header_content,
+html.sc-on .ic-DashboardCard__action-container {
+  background-color: var(--sc-surface);
+}
+
+html.sc-on .ic-DashboardCard__header-subtitle,
+html.sc-on .ic-DashboardCard__header-term {
+  color: var(--sc-text-dim);
+}
+
+/* ---- common dark-mode casualties -------------------------------------- */
+
+/* Equation images are black text on a transparent background. */
+html.sc-on.sc-dark img.equation_image { filter: invert(1) hue-rotate(180deg); }
+
+html.sc-on .ui-widget-overlay { background: rgb(0 0 0 / 0.6); }
+
+html.sc-on :is(.ui-dialog, .ui-menu, .ui-tooltip, .popover, .dropdown-menu, .ui-datepicker) {
+  background-color: var(--sc-surface);
+  color: var(--sc-text);
+  border-color: var(--sc-border);
+}
+
+html.sc-on :is(pre, code, kbd) {
+  background-color: var(--sc-surface);
+  color: var(--sc-text);
+  border-color: var(--sc-border);
+}
+
+/* ---- optional tweaks -------------------------------------------------- */
+
+html.sc-font body,
+html.sc-font :is(button, input, select, textarea, h1, h2, h3, h4, h5, h6) {
+  font-family: var(--sc-font) !important;
+}
+
+html.sc-round .ic-DashboardCard {
+  border-radius: 14px;
+  overflow: hidden;
+}
+html.sc-round :is(.Button, .btn, .ui-button, .ic-Input, input[type="text"], textarea, select) {
+  border-radius: 8px;
+}
+html.sc-round :is(.item-group-condensed .ig-header, .ig-list, .ui-dialog, .ic-notification, .context_module) {
+  border-radius: 10px;
+}

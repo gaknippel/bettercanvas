@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>shittyCanvas</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>shittyCanvas</h1>
+    <label class="switch" title="Turn everything on or off">
+      <input type="checkbox" id="enabled">
+      <span></span>
+    </label>
+  </header>
+
+  <main id="main">
+    <section>
+      <h2>Theme</h2>
+      <div id="themes" class="themes"></div>
+    </section>
+
+    <section>
+      <h2>Colours <button id="reset" type="button" class="link">reset</button></h2>
+      <div id="colors" class="colors"></div>
+    </section>
+
+    <section>
+      <h2>Tweaks</h2>
+      <label class="row">Font
+        <select id="font"></select>
+      </label>
+      <label class="row">Rounded corners <input type="checkbox" id="rounded"></label>
+      <label class="row">Grades on dashboard cards <input type="checkbox" id="cardGrades"></label>
+      <label class="row">Due-soon list on dashboard <input type="checkbox" id="dueList"></label>
+    </section>
+  </main>
+
+  <footer id="site"></footer>
+
+  <script src="../src/shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
