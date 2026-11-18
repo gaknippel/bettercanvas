@@ -18,14 +18,20 @@
 
     root.classList.toggle('sc-on', !!c);
     root.classList.toggle('sc-dark', !!c && SC.luma(c.bg) < 0.5);
+    const skin = c && c.skin ? 'sc-skin-' + c.skin : null;
+    for (const cls of [...root.classList]) if (cls.startsWith('sc-skin-') && cls !== skin) root.classList.remove(cls);
+    if (skin) root.classList.add(skin);
     root.classList.toggle('sc-round', s.enabled && s.rounded && !SC.notCanvas);
-    root.classList.toggle('sc-font', s.enabled && !!s.font && !SC.notCanvas);
+    root.classList.toggle('sc-nohead', s.enabled && s.hideDashHeader && !SC.notCanvas);
+    root.classList.toggle('sc-font',s.enabled && !!s.font && !SC.notCanvas);
+    root.classList.toggle('sc-weight', s.enabled && !!s.fontWeight && !SC.notCanvas);
 
     const set = (k, v) => (v == null ? root.style.removeProperty(k) : root.style.setProperty(k, v));
     for (const k of SC.COLOR_KEYS) set('--sc-' + k, c ? c[k] : null);
     set('--sc-on-accent', c ? (SC.luma(c.accent) > 0.6 ? '#111' : '#fff') : null);
     set('--sc-nav-text', c ? (SC.luma(c.nav) > 0.6 ? '#222' : '#fff') : null);
     set('--sc-font', s.enabled && s.font ? s.font : null);
+    set('--sc-font-weight', s.enabled && s.fontWeight ? s.fontWeight : null);
 
     for (const fn of listeners) {
       try { fn(s); } catch (e) { console.error('[shittyCanvas]', e); }

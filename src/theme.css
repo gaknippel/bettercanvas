@@ -123,6 +123,11 @@ html.sc-font :is(button, input, select, textarea, h1, h2, h3, h4, h5, h6) {
   font-family: var(--sc-font) !important;
 }
 
+/* The "Dashboard" title bar with the card/list view switcher. */
+html.sc-nohead .ic-Dashboard-header { display: none !important; }
+
+html.sc-weight body { font-weight: var(--sc-font-weight); }
+
 html.sc-round .ic-DashboardCard {
   border-radius: 14px;
   overflow: hidden;

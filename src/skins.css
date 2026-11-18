@@ -1,0 +1,827 @@
+/* Game skins: extra styling on top of a theme's colours, switched on by
+   html.sc-skin-<name> when a preset with `skin: '<name>'` is active.
+   Colours still come from the --sc-* variables, so editing a skinned
+   theme's colours in the popup keeps the look. */
+
+/* ======================================================================
+   Steam 2003: olive VGUI panels, beveled edges, gold highlights, Tahoma.
+   ====================================================================== */
+
+html.sc-skin-steam03 {
+  --sc-bevel-hi: color-mix(in srgb, var(--sc-surface) 55%, #c8cfbe);
+  --sc-bevel-lo: color-mix(in srgb, var(--sc-bg) 45%, black);
+  --sc-gold: var(--sc-link);
+  scrollbar-color: var(--sc-surface) var(--sc-nav);
+}
+
+/* Animated mascot (icons/steam-logo.gif) in place of the school logo. */
+html.sc-skin-steam03 {
+  --ic-brand-header-image: url("moz-extension://__MSG_@@extension_id__/icons/steam-logo.gif");
+}
+html.sc-skin-steam03 .ic-app-header__logomark {
+  background-image: url("moz-extension://__MSG_@@extension_id__/icons/steam-logo.gif") !important;
+  background-size: auto 112% !important; /* the GIF has ~10% empty margin */
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+}
+html.sc-skin-steam03 .ic-app-header__logomark img { opacity: 0; }
+
+/* Tahoma, unless you picked your own font in the popup. */
+html.sc-skin-steam03:not(.sc-font) body,
+html.sc-skin-steam03:not(.sc-font) :is(button, input, select, textarea, h1, h2, h3, h4, h5, h6) {
+  font-family: Tahoma, Verdana, "Segoe UI", sans-serif !important;
+}
+
+/* Square everything; 2003 had no border-radius. Beats the Rounded tweak. */
+html.sc-skin-steam03 :is(.ic-DashboardCard, .sc-due, .sc-due__item, .sc-grade, .sc-hide, .sc-due__count,
+    .sc-due__chip, .Button, .btn, .ui-button, .ic-Input, input, textarea, select,
+    .ui-dialog, .ui-menu, .context_module, .ig-list, .item-group-condensed .ig-header) {
+  border-radius: 0 !important;
+}
+
+/* Raised panels: light top-left edge, dark bottom-right edge. */
+html.sc-skin-steam03 :is(.ic-DashboardCard, .sc-due, .ui-dialog, .ui-menu, .context_module, .ig-list) {
+  border: 1px solid !important;
+  border-color: var(--sc-bevel-hi) var(--sc-bevel-lo) var(--sc-bevel-lo) var(--sc-bevel-hi) !important;
+  box-shadow: none !important;
+}
+
+/* Sunken text fields. */
+html.sc-skin-steam03 :is(input[type="text"], input[type="search"], input[type="email"], input[type="password"],
+    input[type="number"], input[type="url"], input:not([type]), textarea, select, .ic-Input) {
+  background-color: var(--sc-nav) !important;
+  border: 1px solid !important;
+  border-color: var(--sc-bevel-lo) var(--sc-bevel-hi) var(--sc-bevel-hi) var(--sc-bevel-lo) !important;
+  box-shadow: none !important;
+}
+
+/* Raised buttons that press in. */
+html.sc-skin-steam03 :is(.Button, .btn, .ui-button, .sc-hide) {
+  background: var(--sc-bg) !important;
+  color: var(--sc-text) !important;
+  border: 1px solid !important;
+  border-color: var(--sc-bevel-hi) var(--sc-bevel-lo) var(--sc-bevel-lo) var(--sc-bevel-hi) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+}
+html.sc-skin-steam03 :is(.Button, .btn, .ui-button, .sc-hide):hover { color: var(--sc-gold) !important; }
+html.sc-skin-steam03 :is(.Button, .btn, .ui-button, .sc-hide):active {
+  border-color: var(--sc-bevel-lo) var(--sc-bevel-hi) var(--sc-bevel-hi) var(--sc-bevel-lo) !important;
+}
+html.sc-skin-steam03 :is(.Button--primary, .btn-primary) {
+  background: var(--sc-accent) !important;
+  color: var(--sc-on-accent) !important;
+}
+
+/* Gold headings, like the old window titles. */
+html.sc-skin-steam03 :is(h1, h2, .ic-DashboardCard__header-title, .sc-due__title) {
+  color: var(--sc-gold) !important;
+}
+
+/* Left nav as a dark VGUI strip with a bevel. */
+html.sc-skin-steam03 .ic-app-header {
+  border-right: 1px solid var(--sc-bevel-lo);
+  box-shadow: inset -1px 0 0 var(--sc-bevel-hi);
+}
+
+/* Due-soon panel and dashboard extras. */
+html.sc-skin-steam03 .sc-due__day {
+  padding: 2px 4px;
+  color: var(--sc-gold);
+  background: var(--sc-nav);
+  letter-spacing: 0.04em;
+}
+html.sc-skin-steam03 .sc-due__item:hover { background: var(--sc-bg); }
+html.sc-skin-steam03 .sc-due__count { color: var(--sc-nav); background: var(--sc-gold); }
+html.sc-skin-steam03 .sc-ring__bar { stroke-linecap: butt; }
+html.sc-skin-steam03 .sc-grade {
+  color: var(--sc-gold) !important;
+  background: var(--sc-nav);
+  border: 1px solid var(--sc-bevel-lo);
+  backdrop-filter: none;
+}
+
+html.sc-skin-steam03 ::selection { background: var(--sc-accent); color: var(--sc-on-accent); }
+
+/* ======================================================================
+   RE4 Remake: near-black menus, bone text, tan-gold accents, thin
+   glowing selection outlines, vignette and film grain, Fine/Caution/
+   Danger status colours.
+   ====================================================================== */
+
+html.sc-skin-re4r {
+  --sc-line: color-mix(in srgb, var(--sc-text) 14%, transparent);
+  --sc-select: 0 0 0 1px color-mix(in srgb, white 80%, transparent),
+               0 0 14px color-mix(in srgb, white 18%, transparent);
+  --sc-fine: #4f9d5b;
+  --sc-caution: #d4a93a;
+  --sc-danger: #b8322a;
+  scrollbar-color: color-mix(in srgb, var(--sc-text) 30%, transparent) var(--sc-nav);
+  scrollbar-width: thin;
+}
+
+/* Vignette behind the page, grain on top of it. */
+html.sc-skin-re4r body {
+  background:
+    radial-gradient(ellipse at 50% 35%, transparent 40%, rgb(0 0 0 / 0.55) 100%) fixed,
+    var(--sc-bg) !important;
+}
+html.sc-skin-re4r :is(#application, #wrapper, #main, #not_right_side, #content-wrapper, #content,
+    .ic-Layout-wrapper, .ic-Layout-columns, .ic-Layout-contentWrapper, .ic-Layout-contentMain,
+    .ic-app-main-content, .ic-app-nav-toggle-and-crumbs, #left-side, #right-side-wrapper, #right-side,
+    #dashboard, #DashboardCard_Container) {
+  background-color: transparent !important;
+}
+html.sc-skin-re4r body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Letter-spaced serif headings, like the menu titles. Your own font
+   choice still applies to body text. */
+html.sc-skin-re4r :is(h1, h2, .sc-due__title, .ic-DashboardCard__header-title) {
+  font-family: "Trajan Pro", Cinzel, "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sc-text) !important;
+}
+html.sc-skin-re4r .ic-DashboardCard__header-title { font-size: 13px; }
+
+/* Square panels: dark gradient, hairline border, soft drop shadow. */
+html.sc-skin-re4r :is(.ic-DashboardCard, .sc-due, .sc-due__item, .sc-grade, .sc-hide, .sc-due__count,
+    .sc-due__chip, .Button, .btn, .ui-button, .ic-Input, input, textarea, select,
+    .ui-dialog, .ui-menu, .context_module, .ig-list, .item-group-condensed .ig-header) {
+  border-radius: 0 !important;
+}
+html.sc-skin-re4r :is(.ic-DashboardCard, .sc-due, .ui-dialog, .ui-menu, .context_module, .ig-list) {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--sc-surface) 92%, white), var(--sc-surface)) !important;
+  border: 1px solid var(--sc-line) !important;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.45) !important;
+}
+html.sc-skin-re4r .ic-DashboardCard__header_content,
+html.sc-skin-re4r .ic-DashboardCard__action-container { background: transparent !important; }
+
+/* Inventory-style selection: a thin glowing white outline. */
+html.sc-skin-re4r .ic-DashboardCard { transition: box-shadow 0.15s; }
+html.sc-skin-re4r .ic-DashboardCard:hover,
+html.sc-skin-re4r .ic-DashboardCard:focus-within { box-shadow: var(--sc-select), 0 8px 24px rgb(0 0 0 / 0.45) !important; }
+html.sc-skin-re4r .sc-due__item:hover,
+html.sc-skin-re4r .sc-due__item:focus-visible {
+  background: rgb(255 255 255 / 0.04);
+  box-shadow: var(--sc-select);
+  outline: none;
+}
+
+/* Gritty, desaturated course images. */
+html.sc-skin-re4r .ic-DashboardCard__header_image { filter: saturate(0.55) contrast(1.1) brightness(0.8); }
+
+/* Fields: dark, hairline underline feel. */
+html.sc-skin-re4r :is(input[type="text"], input[type="search"], input[type="email"], input[type="password"],
+    input[type="number"], input[type="url"], input:not([type]), textarea, select, .ic-Input) {
+  background-color: rgb(0 0 0 / 0.45) !important;
+  border: 1px solid var(--sc-line) !important;
+  box-shadow: none !important;
+}
+html.sc-skin-re4r :is(input, textarea, select, .ic-Input):focus { box-shadow: var(--sc-select) !important; }
+
+/* Buttons: hollow, uppercase, light up on select. */
+html.sc-skin-re4r :is(.Button, .btn, .ui-button, .sc-hide) {
+  background: rgb(0 0 0 / 0.35) !important;
+  color: var(--sc-text) !important;
+  border: 1px solid color-mix(in srgb, var(--sc-text) 35%, transparent) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: box-shadow 0.15s;
+}
+html.sc-skin-re4r :is(.Button, .btn, .ui-button, .sc-hide):is(:hover, :focus-visible) {
+  box-shadow: var(--sc-select) !important;
+  border-color: transparent !important;
+}
+html.sc-skin-re4r :is(.Button--primary, .btn-primary) {
+  background: color-mix(in srgb, var(--sc-accent) 30%, black) !important;
+  border-color: var(--sc-accent) !important;
+}
+
+/* Left nav: black strip with a hairline edge. */
+html.sc-skin-re4r .ic-app-header { border-right: 1px solid var(--sc-line); }
+
+/* Due soon: Fine / Caution / Danger. */
+html.sc-skin-re4r .sc-due {
+  --sc-due-calm: var(--sc-fine);
+  --sc-due-amber: var(--sc-caution);
+  --sc-due-red: var(--sc-danger);
+}
+html.sc-skin-re4r .sc-ring__bar {
+  stroke-linecap: butt;
+  filter: drop-shadow(0 0 3px var(--sc-ring));
+}
+html.sc-skin-re4r .sc-ring__track { stroke: rgb(255 255 255 / 0.08); }
+html.sc-skin-re4r .sc-due__day {
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--sc-line);
+  letter-spacing: 0.12em;
+  color: var(--sc-link);
+}
+html.sc-skin-re4r .sc-due__day--missing { color: var(--sc-danger); }
+html.sc-skin-re4r .sc-due__count { color: #fff; background: var(--sc-fine); }
+html.sc-skin-re4r .sc-due__name { color: var(--sc-text); }
+html.sc-skin-re4r .sc-grade {
+  color: var(--sc-link) !important;
+  background: rgb(0 0 0 / 0.7);
+  border: 1px solid var(--sc-line);
+  letter-spacing: 0.04em;
+}
+
+html.sc-skin-re4r ::selection { background: color-mix(in srgb, var(--sc-accent) 60%, transparent); color: #fff; }
+
+/* ======================================================================
+   Balatro: swirling felt background, CRT scanlines, chunky slate panels
+   with hard drop shadows, chip-coloured buttons, pixel fonts, cards that
+   lift and tilt like a hand of cards.
+   ====================================================================== */
+
+html.sc-skin-balatro {
+  --sc-red: #fe5f55;
+  --sc-blue: #009dff;
+  --sc-orange: #fda200;
+  --sc-green: #4bc292;
+  --sc-edge: color-mix(in srgb, var(--sc-surface) 70%, white);
+  --sc-drop: 0 4px 0 rgb(0 0 0 / 0.4);
+  --sc-pixel-head: "Jersey 10", "Pixelify Sans", monospace;
+  scrollbar-color: var(--sc-edge) var(--sc-nav);
+}
+
+/* Layout wrappers (and body) go see-through so the swirl shows between panels. */
+html.sc-skin-balatro :is(body, #application, #wrapper, #main, #not_right_side, #content-wrapper, #content,
+    .ic-Layout-wrapper, .ic-Layout-columns, .ic-Layout-contentWrapper, .ic-Layout-contentMain,
+    .ic-app-main-content, .ic-app-nav-toggle-and-crumbs, #left-side, #right-side-wrapper, #right-side,
+    #dashboard, #DashboardCard_Container) {
+  background-color: transparent !important;
+}
+
+/* The swirl: a big blurred conic gradient turning very slowly. Transform-only
+   animation, so it runs on the compositor. */
+html.sc-skin-balatro body::before {
+  content: "";
+  position: fixed;
+  inset: -50vmax;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 30% 40%, color-mix(in srgb, var(--sc-red) 22%, transparent), transparent 35%),
+    radial-gradient(circle at 70% 65%, color-mix(in srgb, var(--sc-blue) 14%, transparent), transparent 40%),
+    conic-gradient(from 0deg, var(--sc-bg), #2a5a4a, var(--sc-bg), #24493f, #2f6650, var(--sc-bg));
+  filter: blur(40px);
+  animation: sc-balatro-swirl 140s linear infinite;
+}
+@keyframes sc-balatro-swirl { to { transform: rotate(360deg); } }
+
+/* CRT scanlines. */
+html.sc-skin-balatro body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgb(0 0 0 / 0.07) 0 1px, transparent 1px 3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.sc-skin-balatro body::before { animation: none; }
+}
+
+/* Pixel fonts: chunky headings always; Pixelify Sans for body text unless
+   you picked your own font in the popup. */
+html.sc-skin-balatro:not(.sc-font) body,
+html.sc-skin-balatro:not(.sc-font) :is(button, input, select, textarea) {
+  font-family: "Pixelify Sans", system-ui, sans-serif !important;
+}
+html.sc-skin-balatro :is(h1, h2, h3, .sc-due__title, .sc-due__day, .sc-due__count, .sc-due__chip,
+    .sc-due__time, .sc-ring__label, .sc-grade, .sc-hide, .ic-DashboardCard__header-title,
+    .Button, .btn, .ui-button) {
+  font-family: var(--sc-pixel-head) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em;
+}
+html.sc-skin-balatro :is(h1, h2, h3, .sc-due__title) {
+  color: var(--sc-text) !important;
+  text-shadow: 0 2px 0 rgb(0 0 0 / 0.45);
+}
+html.sc-skin-balatro h1 { font-size: 2.1em; }
+html.sc-skin-balatro h2, html.sc-skin-balatro .sc-due__title { font-size: 1.6em; }
+html.sc-skin-balatro .ic-DashboardCard__header-title { font-size: 20px; line-height: 1.1; }
+
+/* Chunky panels. */
+html.sc-skin-balatro :is(.ic-DashboardCard, .sc-due, .ui-dialog, .ui-menu, .context_module, .ig-list) {
+  background: var(--sc-surface) !important;
+  border: 2px solid var(--sc-edge) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--sc-drop) !important;
+}
+html.sc-skin-balatro .ic-DashboardCard { overflow: hidden; }
+html.sc-skin-balatro .ic-DashboardCard__header_content,
+html.sc-skin-balatro .ic-DashboardCard__action-container { background: transparent !important; }
+
+/* Cards lift and tilt like you're picking one from your hand. */
+html.sc-skin-balatro .ic-DashboardCard { transition: transform 0.18s cubic-bezier(.3, 1.6, .5, 1), box-shadow 0.18s; }
+html.sc-skin-balatro .ic-DashboardCard:hover,
+html.sc-skin-balatro .ic-DashboardCard:focus-within {
+  transform: translateY(-6px) rotate(-1.2deg);
+  box-shadow: 0 10px 0 rgb(0 0 0 / 0.35) !important;
+}
+html.sc-skin-balatro .ic-DashboardCard:nth-child(even):hover,
+html.sc-skin-balatro .ic-DashboardCard:nth-child(even):focus-within { transform: translateY(-6px) rotate(1.2deg); }
+@media (prefers-reduced-motion: reduce) {
+  html.sc-skin-balatro .ic-DashboardCard:is(:hover, :focus-within) { transform: none !important; }
+}
+
+/* Inset fields. */
+html.sc-skin-balatro :is(input[type="text"], input[type="search"], input[type="email"], input[type="password"],
+    input[type="number"], input[type="url"], input:not([type]), textarea, select, .ic-Input) {
+  background-color: var(--sc-nav) !important;
+  border: 2px solid var(--sc-edge) !important;
+  border-radius: 6px !important;
+  box-shadow: inset 0 2px 0 rgb(0 0 0 / 0.35) !important;
+}
+
+/* Chip buttons: blue by default, red for primary, press down on click. */
+html.sc-skin-balatro :is(.Button, .btn, .ui-button) {
+  --sc-chip: var(--sc-blue);
+  background: var(--sc-chip) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--sc-chip) 55%, black) !important;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 0.35) !important;
+  transition: transform 0.06s, box-shadow 0.06s;
+}
+html.sc-skin-balatro :is(.Button--primary, .btn-primary) { --sc-chip: var(--sc-red); }
+html.sc-skin-balatro :is(.Button--success, .btn-success) { --sc-chip: var(--sc-green); }
+html.sc-skin-balatro :is(.Button, .btn, .ui-button):hover { filter: brightness(1.1); }
+html.sc-skin-balatro :is(.Button, .btn, .ui-button):active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--sc-chip) 55%, black) !important;
+}
+
+/* Sidebar nav. */
+html.sc-skin-balatro .ic-app-header { border-right: 2px solid rgb(0 0 0 / 0.4); }
+
+/* Due soon: chips are blue, money is orange, mult is red. */
+html.sc-skin-balatro .sc-due {
+  --sc-due-calm: var(--sc-blue);
+  --sc-due-amber: var(--sc-orange);
+  --sc-due-red: var(--sc-red);
+}
+html.sc-skin-balatro .sc-due__count {
+  padding: 0 9px;
+  border-radius: 6px;
+  font-size: 18px;
+  color: #fff;
+  background: var(--sc-blue);
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--sc-blue) 55%, black);
+}
+html.sc-skin-balatro .sc-due__chip {
+  border-radius: 6px;
+  font-size: 16px;
+  color: #fff;
+  box-shadow: 0 2px 0 rgb(0 0 0 / 0.35);
+}
+html.sc-skin-balatro .sc-due__chip--missing { background: var(--sc-red); }
+html.sc-skin-balatro .sc-due__chip--soon { background: var(--sc-orange); }
+html.sc-skin-balatro .sc-due__day {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 1px 8px;
+  border-radius: 6px;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  color: var(--sc-text);
+  background: rgb(0 0 0 / 0.3);
+}
+html.sc-skin-balatro .sc-due__day--missing { background: var(--sc-red); color: #fff; }
+html.sc-skin-balatro .sc-due__item { border-radius: 8px; }
+html.sc-skin-balatro .sc-due__item:hover { background: rgb(0 0 0 / 0.2); }
+html.sc-skin-balatro .sc-due__name { color: var(--sc-text); }
+html.sc-skin-balatro .sc-due__time { font-size: 17px; }
+html.sc-skin-balatro .sc-ring__label { font-size: 12px; }
+html.sc-skin-balatro .sc-ring__bar { stroke-linecap: butt; }
+html.sc-skin-balatro .sc-ring__track { stroke: rgb(0 0 0 / 0.35); }
+
+/* Grade pill as a blue chip; Hide as an orange one. */
+html.sc-skin-balatro .sc-grade {
+  border-radius: 6px;
+  font-size: 16px;
+  background: var(--sc-blue);
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--sc-blue) 55%, black);
+  backdrop-filter: none;
+}
+html.sc-skin-balatro .sc-hide {
+  border-radius: 6px;
+  font-size: 16px;
+  background: var(--sc-orange);
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--sc-orange) 55%, black);
+  backdrop-filter: none;
+}
+
+html.sc-skin-balatro ::selection { background: var(--sc-red); color: #fff; }
+
+/* ======================================================================
+   boolymon: flat #4f4f4f greys, JetBrains Mono everywhere, black-on-
+   yellow highlights, and the smiley (icons/booly.png) in place of the
+   school logo.
+   ====================================================================== */
+
+html.sc-skin-boolymon {
+  --sc-yellow: var(--sc-accent);
+  --sc-ink: #111;
+  --sc-tan: #c6b09e;
+  --sc-row: #5f5f5f;
+  --sc-mono: "SC JetBrains Mono", "JetBrains Mono", "Fira Code", Consolas, monospace;
+  --ic-brand-header-image: url("moz-extension://__MSG_@@extension_id__/icons/booly.png");
+  scrollbar-color: color-mix(in srgb, var(--sc-text) 30%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+/* The smiley replaces the school logo, top left. */
+html.sc-skin-boolymon .ic-app-header__logomark {
+  background-image: url("moz-extension://__MSG_@@extension_id__/icons/booly.png") !important;
+  background-size: 64% auto !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+}
+html.sc-skin-boolymon .ic-app-header__logomark img { opacity: 0; }
+
+/* Mono everything, unless you picked your own font in the popup. Headings
+   are always mono. */
+html.sc-skin-boolymon:not(.sc-font) body,
+html.sc-skin-boolymon:not(.sc-font) :is(button, input, select, textarea) {
+  font-family: var(--sc-mono) !important;
+}
+html.sc-skin-boolymon :is(h1, h2, h3, .sc-due__title, .ic-DashboardCard__header-title) {
+  font-family: var(--sc-mono) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+  color: var(--sc-text) !important;
+}
+html.sc-skin-boolymon h1 { font-size: 2.2em; }
+
+/* Flat rounded grey panels, no borders. */
+html.sc-skin-boolymon :is(.ic-DashboardCard, .sc-due, .ui-dialog, .ui-menu, .context_module, .ig-list) {
+  background: var(--sc-surface) !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.25) !important;
+}
+html.sc-skin-boolymon .ic-DashboardCard { overflow: hidden; transition: background 0.12s; }
+html.sc-skin-boolymon .ic-DashboardCard:hover { background: var(--sc-row) !important; }
+html.sc-skin-boolymon .ic-DashboardCard__header_content,
+html.sc-skin-boolymon .ic-DashboardCard__action-container { background: transparent !important; }
+
+/* Fields: dark rounded pills, like the search bar. */
+html.sc-skin-boolymon :is(input[type="text"], input[type="search"], input[type="email"], input[type="password"],
+    input[type="number"], input[type="url"], input:not([type]), textarea, select, .ic-Input) {
+  background-color: color-mix(in srgb, var(--sc-nav) 70%, var(--sc-bg)) !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+html.sc-skin-boolymon :is(input, textarea, select, .ic-Input):focus { border-color: var(--sc-yellow) !important; }
+
+/* Buttons: outlined pills (the Follow button); primary is black on yellow. */
+html.sc-skin-boolymon :is(.Button, .btn, .ui-button) {
+  background: transparent !important;
+  color: var(--sc-text) !important;
+  border: 1px solid color-mix(in srgb, var(--sc-text) 35%, transparent) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  font-weight: 700;
+}
+html.sc-skin-boolymon :is(.Button, .btn, .ui-button):hover { border-color: var(--sc-text) !important; transform: scale(1.03); }
+html.sc-skin-boolymon :is(.Button--primary, .btn-primary) {
+  background: var(--sc-yellow) !important;
+  color: var(--sc-ink) !important;
+  border-color: transparent !important;
+}
+
+/* Sidebar. */
+html.sc-skin-boolymon .ic-app-header { border-right: 0; }
+
+/* Where you are: black on yellow in both the global nav and the course nav. */
+html.sc-skin-boolymon .ic-app-header__menu-list-item--active .ic-app-header__menu-list-link,
+html.sc-skin-boolymon .ic-app-header__menu-list-item--active .ic-app-header__menu-list-link:hover {
+  background: var(--sc-yellow) !important;
+}
+html.sc-skin-boolymon .ic-app-header__menu-list-item--active :is(.menu-item__text, .ic-icon-svg, svg, svg *) {
+  color: var(--sc-ink) !important;
+  fill: var(--sc-ink) !important;
+}
+html.sc-skin-boolymon #section-tabs a.active {
+  background: var(--sc-yellow) !important;
+  color: var(--sc-ink) !important;
+  border-color: var(--sc-yellow) !important;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* Small coloured labels Canvas uses (counts, badges, pills): black text. */
+html.sc-skin-boolymon :is(.ic-app-header__menu-list-item__badge, .nav-badge, .badge, .ic-badge, .unread_count) {
+  background: var(--sc-yellow) !important;
+  color: var(--sc-ink) !important;
+}
+
+/* Due soon: rows highlight like the now-playing track, badges like BPM tags. */
+html.sc-skin-boolymon .sc-due {
+  --sc-due-calm: var(--sc-tan);
+  --sc-due-amber: var(--sc-yellow);
+  --sc-due-red: #ff6b5e;
+}
+html.sc-skin-boolymon .sc-due__item { border-radius: 6px; }
+html.sc-skin-boolymon .sc-due__item:hover {
+  background: var(--sc-row);
+  box-shadow: inset 3px 0 0 var(--sc-yellow);
+}
+html.sc-skin-boolymon .sc-due__name { color: var(--sc-text); }
+html.sc-skin-boolymon .sc-due__count,
+html.sc-skin-boolymon .sc-due__chip {
+  border-radius: 4px;
+  font-family: var(--sc-mono);
+  color: var(--sc-ink);
+}
+html.sc-skin-boolymon .sc-due__count { background: var(--sc-yellow); }
+html.sc-skin-boolymon .sc-due__chip--missing { background: #ff6b5e; }
+html.sc-skin-boolymon .sc-due__chip--soon { background: var(--sc-tan); }
+html.sc-skin-boolymon .sc-due__day {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-size: 12px;
+  color: var(--sc-ink);
+  background: var(--sc-yellow);
+}
+html.sc-skin-boolymon .sc-due__day--missing { background: #ff6b5e; color: var(--sc-ink); }
+html.sc-skin-boolymon .sc-ring__track { stroke: rgb(0 0 0 / 0.25); }
+html.sc-skin-boolymon .sc-grade,
+html.sc-skin-boolymon .sc-hide {
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--sc-ink) !important;
+  background: var(--sc-yellow);
+  backdrop-filter: none;
+}
+html.sc-skin-boolymon .sc-hide:hover { background: #fff; }
+
+html.sc-skin-boolymon ::selection { background: var(--sc-yellow); color: var(--sc-ink); }
+
+/* ======================================================================
+   Persona 5: black, red and white. Red sidebar, halftone dots and a red
+   slash across the page, condensed all-caps headings in tilted black
+   boxes, hard red offset shadows, skewed buttons, jagged red selection
+   highlights, and a ransom-note "Due soon" title.
+   ====================================================================== */
+
+html.sc-skin-persona5 {
+  --p5-red: var(--sc-accent);
+  --p5-ink: #0d0d0d;
+  --p5-white: #fff;
+  --p5-head: "SC Anton", Anton, Impact, "Arial Narrow", sans-serif;
+  --p5-body: "SC Barlow Semi Condensed", "Barlow Semi Condensed", "Arial Narrow", sans-serif;
+  --p5-shadow: 6px 6px 0 var(--p5-red);
+  scrollbar-color: var(--p5-red) var(--p5-ink);
+}
+
+/* Fonts: condensed body text unless you picked your own; headings always. */
+html.sc-skin-persona5:not(.sc-font) body,
+html.sc-skin-persona5:not(.sc-font) :is(button, input, select, textarea) {
+  font-family: var(--p5-body) !important;
+  font-weight: 500;
+}
+html.sc-skin-persona5 :is(h1, h2, h3, .sc-due__day, .sc-due__count, .sc-due__chip, .sc-due__time,
+    .sc-grade, .sc-hide, .Button, .btn, .ui-button, .ic-DashboardCard__header-title) {
+  font-family: var(--p5-head) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Background: halftone dots fading in from the corners, plus a big red slash. */
+html.sc-skin-persona5 :is(body, #application, #wrapper, #main, #not_right_side, #content-wrapper, #content,
+    .ic-Layout-wrapper, .ic-Layout-columns, .ic-Layout-contentWrapper, .ic-Layout-contentMain,
+    .ic-app-main-content, .ic-app-nav-toggle-and-crumbs, #left-side, #right-side-wrapper, #right-side,
+    #dashboard, #DashboardCard_Container) {
+  background-color: transparent !important;
+}
+html.sc-skin-persona5 body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--p5-red) 55%, transparent) 1.3px, transparent 1.8px) 0 0 / 9px 9px;
+  -webkit-mask-image: linear-gradient(125deg, #000 0, transparent 35%, transparent 65%, #000 100%);
+  mask-image: linear-gradient(125deg, #000 0, transparent 35%, transparent 65%, #000 100%);
+}
+html.sc-skin-persona5 body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(112deg,
+    transparent 0 71%,
+    color-mix(in srgb, var(--p5-red) 85%, transparent) 71% 77%,
+    transparent 77% 79%,
+    color-mix(in srgb, var(--p5-red) 40%, transparent) 79% 80.5%,
+    transparent 80.5%);
+}
+
+/* Headings: white on a tilted black box with a red drop. */
+html.sc-skin-persona5 :is(h1, h2) {
+  display: inline-block;
+  padding: 0.05em 0.45em;
+  color: var(--p5-white) !important;
+  background: var(--p5-ink);
+  transform: rotate(-2deg) skewX(-8deg);
+  box-shadow: 5px 5px 0 var(--p5-red);
+}
+html.sc-skin-persona5 h1 { font-size: 2.3em; }
+
+/* Panels: black with a thick white edge and a hard red shadow, slightly
+   off-kilter. Straighten up on hover. */
+html.sc-skin-persona5 :is(.ic-DashboardCard, .sc-due, .ui-dialog, .ui-menu, .context_module, .ig-list) {
+  background: var(--sc-surface) !important;
+  border: 3px solid var(--p5-white) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--p5-shadow) !important;
+}
+html.sc-skin-persona5 .ic-DashboardCard {
+  overflow: hidden;
+  transform: rotate(-1deg);
+  transition: transform 0.15s cubic-bezier(.3, 1.8, .5, 1), box-shadow 0.15s;
+}
+html.sc-skin-persona5 .ic-DashboardCard:nth-child(even) { transform: rotate(1deg); }
+html.sc-skin-persona5 .ic-DashboardCard:is(:hover, :focus-within) {
+  transform: rotate(0) scale(1.03);
+  box-shadow: 10px 10px 0 var(--p5-red) !important;
+}
+html.sc-skin-persona5 .ic-DashboardCard__header_content,
+html.sc-skin-persona5 .ic-DashboardCard__action-container { background: transparent !important; }
+html.sc-skin-persona5 .ic-DashboardCard__header-title { font-size: 18px; line-height: 1.15; color: var(--p5-white) !important; }
+@media (prefers-reduced-motion: reduce) {
+  html.sc-skin-persona5 .ic-DashboardCard,
+  html.sc-skin-persona5 .ic-DashboardCard:is(:hover, :focus-within) { transform: none !important; }
+}
+
+/* Fields: white boxes, black text, like the in-game text inputs. */
+html.sc-skin-persona5 :is(input[type="text"], input[type="search"], input[type="email"], input[type="password"],
+    input[type="number"], input[type="url"], input:not([type]), textarea, select, .ic-Input) {
+  --sc-keep: 1; /* white on purpose: don't let darken.js flip it */
+  background-color: var(--p5-white) !important;
+  color: var(--p5-ink) !important;
+  border: 2px solid var(--p5-ink) !important;
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 0 var(--p5-red) !important;
+}
+html.sc-skin-persona5 ::placeholder { color: #666 !important; }
+
+/* Buttons: skewed black slabs; red on hover, primary is red. */
+html.sc-skin-persona5 :is(.Button, .btn, .ui-button) {
+  background: var(--p5-ink) !important;
+  color: var(--p5-white) !important;
+  border: 2px solid var(--p5-white) !important;
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 0 var(--p5-red) !important;
+  text-shadow: none !important;
+  transform: skewX(-10deg);
+  transition: transform 0.08s, background 0.08s;
+}
+html.sc-skin-persona5 :is(.Button, .btn, .ui-button):is(:hover, :focus-visible) {
+  background: var(--p5-red) !important;
+  transform: skewX(-10deg) scale(1.05);
+}
+html.sc-skin-persona5 :is(.Button, .btn, .ui-button):active { transform: skewX(-10deg) translate(2px, 2px); box-shadow: none !important; }
+html.sc-skin-persona5 :is(.Button--primary, .btn-primary) { background: var(--p5-red) !important; box-shadow: 3px 3px 0 var(--p5-white) !important; }
+
+/* Course menu: the current page gets a jagged red highlight. */
+html.sc-skin-persona5 #section-tabs a { font-family: var(--p5-head); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 400; }
+html.sc-skin-persona5 #section-tabs a:is(.active, :hover) {
+  color: var(--p5-white) !important;
+  background: var(--p5-red) !important;
+  border-color: transparent !important;
+  clip-path: polygon(0 12%, 100% 0, 96% 100%, 3% 88%);
+}
+
+/* Selection highlights (menus, due rows): jagged red slab, white text. */
+html.sc-skin-persona5 .sc-due__item { border-radius: 0; transition: transform 0.1s; }
+html.sc-skin-persona5 .sc-due__item:is(:hover, :focus-visible) {
+  background: var(--p5-red);
+  clip-path: polygon(0 10%, 100% 0, 98% 100%, 1% 92%);
+  transform: translateX(4px);
+  outline: none;
+}
+html.sc-skin-persona5 .sc-due__item:is(:hover, :focus-visible) :is(.sc-due__name, .sc-due__course, .sc-due__time) { color: var(--p5-white) !important; }
+html.sc-skin-persona5 .sc-due__item:is(:hover, :focus-visible) .sc-ring__bar { stroke: var(--p5-white); }
+html.sc-skin-persona5 .sc-due__item:is(:hover, :focus-visible) .sc-ring__label { fill: var(--p5-white); }
+html.sc-skin-persona5 :is(.ui-menu-item a, .ui-menu-item-wrapper):is(:hover, .ui-state-focus, .ui-state-active) {
+  background: var(--p5-red) !important;
+  color: var(--p5-white) !important;
+}
+
+/* Due soon. */
+html.sc-skin-persona5 .sc-due {
+  --sc-due-calm: var(--p5-white);
+  --sc-due-amber: #ff8a8b;
+  --sc-due-red: var(--p5-red);
+}
+html.sc-skin-persona5 .sc-due__name { color: var(--p5-white); font-weight: 700; }
+html.sc-skin-persona5 .sc-due__time { font-size: 15px; }
+html.sc-skin-persona5 .sc-due__day {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 1px 10px;
+  font-size: 14px;
+  color: var(--p5-ink);
+  background: var(--p5-white);
+  transform: rotate(-2deg) skewX(-10deg);
+  box-shadow: 3px 3px 0 var(--p5-red);
+}
+html.sc-skin-persona5 .sc-due__day--missing { color: var(--p5-white); background: var(--p5-red); box-shadow: 3px 3px 0 var(--p5-white); }
+html.sc-skin-persona5 .sc-due__count {
+  border-radius: 0;
+  font-size: 16px;
+  color: var(--p5-white);
+  background: var(--p5-red);
+  transform: rotate(8deg);
+  clip-path: polygon(50% 0, 61% 32%, 98% 35%, 68% 56%, 79% 92%, 50% 70%, 21% 92%, 32% 56%, 2% 35%, 39% 32%);
+  min-width: 34px;
+  line-height: 34px;
+  padding: 0;
+}
+html.sc-skin-persona5 .sc-due__chip { border-radius: 0; font-size: 13px; transform: skewX(-10deg); }
+html.sc-skin-persona5 .sc-due__chip--missing { color: var(--p5-white); background: var(--p5-red); }
+html.sc-skin-persona5 .sc-due__chip--soon { color: var(--p5-ink); background: var(--p5-white); }
+html.sc-skin-persona5 .sc-ring__track { stroke: #333; }
+html.sc-skin-persona5 .sc-ring__bar { stroke-linecap: butt; }
+
+/* Ransom-note title: every letter cut from a different "magazine". */
+html.sc-skin-persona5 .sc-due__title {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  transform: rotate(-3deg);
+  font-size: 22px;
+  text-transform: uppercase;
+}
+html.sc-skin-persona5 .sc-ransom {
+  display: inline-block;
+  padding: 0 3px;
+  line-height: 1.15;
+  font-family: var(--p5-head);
+  color: var(--p5-ink);
+  background: var(--p5-white);
+}
+html.sc-skin-persona5 .sc-ransom--sp { width: 8px; padding: 0; background: none; }
+html.sc-skin-persona5 .sc-ransom:nth-child(5n+1) { transform: rotate(-6deg); }
+html.sc-skin-persona5 .sc-ransom:nth-child(5n+2) { color: var(--p5-white); background: var(--p5-ink); outline: 2px solid var(--p5-white); font-size: 1.2em; transform: rotate(4deg); }
+html.sc-skin-persona5 .sc-ransom:nth-child(5n+3) { color: var(--p5-white); background: var(--p5-red); transform: rotate(-3deg) translateY(2px); }
+html.sc-skin-persona5 .sc-ransom:nth-child(5n+4) { font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-style: italic; text-transform: lowercase; font-size: 1.15em; transform: rotate(7deg); }
+html.sc-skin-persona5 .sc-ransom:nth-child(5n) { color: var(--p5-red); background: var(--p5-ink); outline: 2px solid var(--p5-red); font-size: 0.9em; transform: rotate(-9deg) translateY(-2px); }
+
+/* Grade pill: white card, black text; Hide: red slab. */
+html.sc-skin-persona5 .sc-grade {
+  border-radius: 0;
+  font-size: 15px;
+  color: var(--p5-ink) !important;
+  background: var(--p5-white);
+  box-shadow: 3px 3px 0 var(--p5-red);
+  transform: rotate(-4deg);
+  backdrop-filter: none;
+}
+html.sc-skin-persona5 .sc-hide {
+  border-radius: 0;
+  font-size: 14px;
+  background: var(--p5-red);
+  box-shadow: 3px 3px 0 var(--p5-ink);
+  transform: skewX(-10deg);
+  backdrop-filter: none;
+}
+
+html.sc-skin-persona5 ::selection { background: var(--p5-red); color: var(--p5-white); }

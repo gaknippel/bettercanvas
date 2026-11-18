@@ -3,12 +3,12 @@
   "name": "shittyCanvas",
   "version": "0.1.0",
   "description": "Themes and quality-of-life tweaks for Canvas LMS. No accounts, no paywall, no tracking.",
-  "icons": { "48": "icons/icon.svg", "96": "icons/icon.svg" },
+  "icons": { "16": "icons/booly-16.png", "32": "icons/booly-32.png", "48": "icons/booly-48.png", "96": "icons/booly-96.png", "128": "icons/booly-128.png" },
 
   "browser_specific_settings": {
     "gecko": {
       "id": "shittycanvas@local",
-      "strict_min_version": "115.0",
+      "strict_min_version": "140.0",
       "data_collection_permissions": { "required": ["none"] }
     }
   },
@@ -16,11 +16,13 @@
   "permissions": ["storage", "activeTab", "*://*.instructure.com/*"],
   "optional_permissions": ["*://*/*"],
 
+  "web_accessible_resources": ["fonts/*.woff2", "icons/booly.png", "icons/steam-logo.gif"],
+
   "background": { "scripts": ["src/background.js"] },
 
   "browser_action": {
     "default_title": "shittyCanvas",
-    "default_icon": "icons/icon.svg",
+    "default_icon": { "16": "icons/booly-16.png", "32": "icons/booly-32.png" },
     "default_popup": "popup/popup.html"
   },
 
@@ -28,7 +30,7 @@
     {
       "matches": ["*://*.instructure.com/*"],
       "exclude_matches": ["*://www.instructure.com/*", "*://community.instructure.com/*"],
-      "css": ["src/theme.css", "src/features.css"],
+      "css": ["src/fonts.css", "src/theme.css", "src/features.css", "src/skins.css"],
       "js": ["src/shared.js", "src/colormap.js", "src/theme.js", "src/darken.js"],
       "run_at": "document_start"
     },

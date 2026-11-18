@@ -23,7 +23,7 @@ async function sync() {
     const regs = await Promise.all([
       browser.contentScripts.register({
         matches: [origin],
-        css: [{ file: '/src/theme.css' }, { file: '/src/features.css' }],
+        css: [{ file: '/src/fonts.css' }, { file: '/src/theme.css' }, { file: '/src/features.css' }, { file: '/src/skins.css' }],
         js: [{ file: '/src/shared.js' }, { file: '/src/colormap.js' }, { file: '/src/theme.js' }, { file: '/src/darken.js' }],
         runAt: 'document_start'
       }),

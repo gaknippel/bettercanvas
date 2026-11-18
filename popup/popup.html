@@ -6,37 +6,72 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <header>
-    <h1>shittyCanvas</h1>
-    <label class="switch" title="Turn everything on or off">
-      <input type="checkbox" id="enabled">
-      <span></span>
+  <div class="titlebar">
+    <img src="../icons/booly-32.png" width="16" height="16" alt="">
+    <span>shittyCanvas</span>
+  </div>
+
+  <div class="frame">
+    <label class="check master">
+      <input type="checkbox" id="enabled"> Enable shittyCanvas
     </label>
-  </header>
 
-  <main id="main">
-    <section>
-      <h2>Theme</h2>
-      <div id="themes" class="themes"></div>
-    </section>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tab-theme" aria-controls="page-theme">Theme</button>
+      <button type="button" role="tab" id="tab-options" aria-controls="page-options">Options</button>
+      <button type="button" role="tab" id="tab-hidden" aria-controls="page-hidden">Hidden classes</button>
+    </div>
 
-    <section>
-      <h2>Colours <button id="reset" type="button" class="link">reset</button></h2>
-      <div id="colors" class="colors"></div>
-    </section>
+    <div class="sheet">
+      <section class="page" id="page-theme" role="tabpanel" aria-labelledby="tab-theme">
+        <fieldset>
+          <legend>Theme</legend>
+          <div class="listbox" id="themes" role="listbox" tabindex="0" aria-label="Theme"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Colours</legend>
+          <div class="colors" id="colors"></div>
+          <div class="buttons">
+            <button type="button" class="btn" id="reset">Reset</button>
+          </div>
+          <p class="note">Changing a colour switches to Custom. Reset puts Custom back to the default colours.</p>
+        </fieldset>
+      </section>
 
-    <section>
-      <h2>Tweaks</h2>
-      <label class="row">Font
-        <select id="font"></select>
-      </label>
-      <label class="row">Rounded corners <input type="checkbox" id="rounded"></label>
-      <label class="row">Grades on dashboard cards <input type="checkbox" id="cardGrades"></label>
-      <label class="row">Due-soon list on dashboard <input type="checkbox" id="dueList"></label>
-    </section>
-  </main>
+      <section class="page" id="page-options" role="tabpanel" aria-labelledby="tab-options">
+        <fieldset>
+          <legend>Text</legend>
+          <div class="form">
+            <label for="font">Font:</label>
+            <select id="font"></select>
+            <label for="fontWeight">Weight:</label>
+            <select id="fontWeight"></select>
+          </div>
+          <p class="note">Themes use their own font when this is "Canvas default".</p>
+        </fieldset>
+        <fieldset>
+          <legend>Dashboard</legend>
+          <label class="check"><input type="checkbox" id="cardGrades"> Show grades on class cards</label>
+          <label class="check"><input type="checkbox" id="dueList"> Show the "Due soon" list</label>
+          <label class="check"><input type="checkbox" id="hideDashHeader"> Hide the dashboard title bar</label>
+        </fieldset>
+        <fieldset>
+          <legend>Appearance</legend>
+          <label class="check"><input type="checkbox" id="rounded"> Rounded corners</label>
+        </fieldset>
+      </section>
 
-  <footer id="site"></footer>
+      <section class="page" id="page-hidden" role="tabpanel" aria-labelledby="tab-hidden">
+        <fieldset>
+          <legend>Hidden classes</legend>
+          <div class="listbox tall" id="hidden"></div>
+          <p class="note">Hide a class from its card on the dashboard.</p>
+        </fieldset>
+      </section>
+    </div>
+  </div>
+
+  <div class="statusbar" id="site"><span class="panel">&nbsp;</span></div>
 
   <script src="../src/shared.js"></script>
   <script src="popup.js"></script>

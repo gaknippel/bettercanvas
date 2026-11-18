@@ -1,0 +1,44 @@
+/* Fonts bundled with the extension (SIL Open Font License, see fonts/).
+   Only downloaded when something on the page actually uses them. */
+
+@font-face {
+  font-family: "Jersey 10";
+  src: url("moz-extension://__MSG_@@extension_id__/fonts/Jersey10-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SC JetBrains Mono";
+  src: url("moz-extension://__MSG_@@extension_id__/fonts/JetBrainsMono-latin.woff2") format("woff2");
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SC Anton";
+  src: url("moz-extension://__MSG_@@extension_id__/fonts/Anton-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SC Barlow Semi Condensed";
+  src: url("moz-extension://__MSG_@@extension_id__/fonts/BarlowSemiCondensed-500-latin.woff2") format("woff2");
+  font-weight: 400 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SC Barlow Semi Condensed";
+  src: url("moz-extension://__MSG_@@extension_id__/fonts/BarlowSemiCondensed-700-latin.woff2") format("woff2");
+  font-weight: 600 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pixelify Sans";
+  src: url("moz-extension://__MSG_@@extension_id__/fonts/PixelifySans-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
